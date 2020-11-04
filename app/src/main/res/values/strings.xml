@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FundamentalsAssignments</string>
+    <string name="greetings">Hello World!</string>
+    <string name="land_greetings" translatable="false">Hello Land World!</string>
 </resources>
