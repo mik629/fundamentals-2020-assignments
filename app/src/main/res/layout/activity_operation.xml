@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OperationActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/plus"
+        style="@style/OperationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/operation_plus"
+        app:layout_constraintBottom_toTopOf="@id/minus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/minus"
+        style="@style/OperationButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/operation_minus"
+        app:layout_constraintBottom_toTopOf="@id/multiply"
+        app:layout_constraintEnd_toEndOf="@id/plus"
+        app:layout_constraintStart_toStartOf="@id/plus"
+        app:layout_constraintTop_toBottomOf="@id/plus" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/multiply"
+        style="@style/OperationButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/operation_multiply"
+        app:layout_constraintBottom_toTopOf="@id/divide"
+        app:layout_constraintEnd_toEndOf="@id/plus"
+        app:layout_constraintStart_toStartOf="@id/plus"
+        app:layout_constraintTop_toBottomOf="@id/minus" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/divide"
+        style="@style/OperationButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/operation_divide"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/plus"
+        app:layout_constraintStart_toStartOf="@id/plus"
+        app:layout_constraintTop_toBottomOf="@id/multiply" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FundamentalsAssignments</string>
+    <string name="operation_plus">+</string>
+    <string name="operation_minus">-</string>
+    <string name="operation_multiply">*</string>
+    <string name="operation_divide">/</string>
+    <string name="first_number_hint">first number</string>
+    <string name="second_number_hint">second number</string>
+    <string name="result_info">The result is:</string>
+    <string name="result_go_home">Go home</string>
 </resources>
