@@ -1,41 +1,47 @@
 package com.android.academy.fundamentals
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.android.academy.fundamentals.FirstNumberActivity.Companion.FIRST_NUM
-import com.android.academy.fundamentals.OperationActivity.Companion.OPERATION
-import com.android.academy.fundamentals.SecondNumberActivity.Companion.SECOND_NUM
-import com.android.academy.fundamentals.databinding.ActivityResultBinding
+import com.android.academy.fundamentals.databinding.ResultScreenBinding
 
 class ResultActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityResultBinding
+    private lateinit var binding: ResultScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityResultBinding.inflate(layoutInflater)
+        binding = ResultScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val firstNum = intent.getIntExtra(FIRST_NUM, 0)
-        val secondNum = intent.getIntExtra(SECOND_NUM, 0)
-        val res = when(intent.getParcelableExtra<Operation>(OPERATION)) {
-            Operation.PLUS -> firstNum + secondNum
-            Operation.MINUS -> firstNum - secondNum
-            Operation.MULTIPLY -> firstNum * secondNum
-            Operation.DIVIDE -> firstNum / secondNum.toFloat()
-            else -> 0
-        }
-        with(binding) {
-            result.text = res.toString()
-            goHomeBtn.setOnClickListener {
-                goHome()
-            }
+        handleResult()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleResult()
+    }
+
+    private fun handleResult() {
+        val result = intent.getFloatExtra(RESULT, Float.NEGATIVE_INFINITY)
+        binding.result.text = if (result == Float.NEGATIVE_INFINITY) "" else result.toString()
+        binding.goHomeBtn.setOnClickListener {
+            redirectToFirstActivity()
         }
     }
 
-    private fun goHome() {
+    private fun redirectToFirstActivity() {
         startActivity(
             Intent(this@ResultActivity, FirstNumberActivity::class.java)
         )
+    }
+
+    companion object {
+        private const val RESULT = "result"
+
+        fun createIntent(context: Context, res: Float) =
+            Intent(context, ResultActivity::class.java)
+                .putExtra(RESULT, res)
     }
 }

@@ -1,12 +1,9 @@
 package com.android.academy.fundamentals
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-enum class Operation: Parcelable {
+enum class Operation {
     PLUS,
     MINUS,
     MULTIPLY,
-    DIVIDE
+    DIVIDE,
+    UNKNOWN,
 }

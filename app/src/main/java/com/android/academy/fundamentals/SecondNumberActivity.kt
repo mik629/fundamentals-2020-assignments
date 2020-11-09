@@ -1,38 +1,35 @@
 package com.android.academy.fundamentals
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.android.academy.fundamentals.databinding.ActivitySecondNumberBinding
+import com.android.academy.fundamentals.databinding.SecondNumberScreenBinding
 
 class SecondNumberActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySecondNumberBinding
+    private lateinit var binding: SecondNumberScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySecondNumberBinding.inflate(layoutInflater)
+        binding = SecondNumberScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        with(binding) {
-            next.setOnClickListener {
-                moveToNextScreen(secondNumber.text.toString().toInt())
-            }
+        binding.next.setOnClickListener {
+            moveToNextScreen(binding.secondNumber.text.toString().toInt())
         }
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
     }
 
     private fun moveToNextScreen(secondNum: Int) {
         startActivity(
-            Intent(this, OperationActivity::class.java)
-                .putExtras(intent)
-                .putExtra(SECOND_NUM, secondNum)
+            OperationActivity.createIntent(this, intent.getIntExtra(FIRST_NUM, 0), secondNum)
         )
     }
 
     companion object {
-        const val SECOND_NUM = "secondNum"
+        const val FIRST_NUM = "firstNum"
+
+        fun createIntent(context: Context, firstNum: Int) =
+            Intent(context, SecondNumberActivity::class.java)
+                .putExtra(FIRST_NUM, firstNum)
     }
 }
