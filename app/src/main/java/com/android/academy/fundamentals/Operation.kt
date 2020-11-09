@@ -5,5 +5,4 @@ enum class Operation {
     MINUS,
     MULTIPLY,
     DIVIDE,
-    UNKNOWN,
 }

@@ -33,7 +33,7 @@ class ResultActivity : AppCompatActivity() {
 
     private fun redirectToFirstActivity() {
         startActivity(
-            Intent(this@ResultActivity, FirstNumberActivity::class.java)
+            Intent(this, FirstNumberActivity::class.java)
         )
     }
 

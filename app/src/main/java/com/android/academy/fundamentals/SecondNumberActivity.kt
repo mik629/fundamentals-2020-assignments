@@ -21,12 +21,16 @@ class SecondNumberActivity : AppCompatActivity() {
 
     private fun moveToNextScreen(secondNum: Int) {
         startActivity(
-            OperationActivity.createIntent(this, intent.getIntExtra(FIRST_NUM, 0), secondNum)
+            OperationActivity.createIntent(
+                this,
+                firstNum = intent.getIntExtra(FIRST_NUM, 0),
+                secondNum = secondNum
+            )
         )
     }
 
     companion object {
-        const val FIRST_NUM = "firstNum"
+        private const val FIRST_NUM = "firstNum"
 
         fun createIntent(context: Context, firstNum: Int) =
             Intent(context, SecondNumberActivity::class.java)

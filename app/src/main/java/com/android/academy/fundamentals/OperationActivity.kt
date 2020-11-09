@@ -4,9 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.android.academy.fundamentals.SecondNumberActivity.Companion.FIRST_NUM
 import com.android.academy.fundamentals.databinding.OperationScreenBinding
-
 class OperationActivity : AppCompatActivity() {
     private lateinit var binding: OperationScreenBinding
 
@@ -35,29 +33,29 @@ class OperationActivity : AppCompatActivity() {
             ResultActivity.createIntent(
                 this,
                 calculateResult(
-                    intent.getIntExtra(FIRST_NUM, Int.MIN_VALUE),
-                    intent.getIntExtra(SECOND_NUM, Int.MIN_VALUE),
+                    intent.getParcelableExtra(INPUT_NUMS)!!,
                     operation
                 )
             )
         )
     }
 
-    private fun calculateResult(firstNum: Int, secondNum: Int, operation: Operation): Float =
-        when (operation) {
-            Operation.PLUS -> firstNum + secondNum.toFloat()
-            Operation.MINUS -> firstNum - secondNum.toFloat()
-            Operation.MULTIPLY -> firstNum * secondNum.toFloat()
-            Operation.DIVIDE -> firstNum / secondNum.toFloat()
-            else -> 0f
+    private fun calculateResult(inputNumbers: InputNumbers, operation: Operation): Float =
+        with(inputNumbers) {
+            when (operation) {
+                Operation.PLUS -> firstNum + secondNum.toFloat()
+                Operation.MINUS -> firstNum - secondNum.toFloat()
+                Operation.MULTIPLY -> firstNum * secondNum.toFloat()
+                Operation.DIVIDE -> firstNum / secondNum.toFloat()
+            }
         }
 
     companion object {
-        private const val SECOND_NUM = "secondNum"
+        private const val INPUT_NUMS = "inputNumbers"
 
         fun createIntent(context: Context, firstNum: Int, secondNum: Int) =
             Intent(context, OperationActivity::class.java)
-                .putExtra(FIRST_NUM, firstNum)
-                .putExtra(SECOND_NUM, secondNum)
+                .putExtra(INPUT_NUMS, InputNumbers(firstNum, secondNum))
     }
 }
+
