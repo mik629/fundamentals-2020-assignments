@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/first_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:inputType="number"/>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/next"
         android:minWidth="0dp"
         android:layout_width="wrap_content"
